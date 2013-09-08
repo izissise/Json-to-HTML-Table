@@ -1,0 +1,22 @@
+{
+  "name": "json-to-table",
+  "main": ["json-to-table.js"],
+  "version": "1.0.0",
+  "homepage": "https://github.com/pammacdotnet/Json-to-HTML-Table",
+  "authors": [
+    "pammacdotnet"
+  ],
+  "description": "JSON to HTML table from Afshin Mehrabani",
+  "keywords": [
+    "json",
+    "table"
+  ],
+  "license": "Apache",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
