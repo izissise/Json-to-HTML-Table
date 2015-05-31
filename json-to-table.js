@@ -51,8 +51,6 @@ function ConvertJsonToTable(parsedJson, tableId, tableClassName, linkText)
 {
     //Patterns for links and NULL value
     var italic = '<i>{0}</i>';
-    var link = linkText ? '<a href="{0}">' + linkText + '</a>' :
-                          '<a href="{0}">{0}</a>';
 
     //Pattern for table                          
     var idMarkup = tableId ? ' id="' + tableId + '"' :
@@ -94,7 +92,7 @@ function ConvertJsonToTable(parsedJson, tableId, tableClassName, linkText)
             }
         }
         th = th.format(tr.format(thCon));
-        
+
         // Create table rows from Json data
         if(isStringArray)
         {
@@ -109,33 +107,18 @@ function ConvertJsonToTable(parsedJson, tableId, tableClassName, linkText)
         {
             if(headers)
             {
-                var urlRegExp = new RegExp(/(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig);
-                var javascriptRegExp = new RegExp(/(^javascript:[\s\S]*;$)/ig);
-                
                 for (i = 0; i < parsedJson.length; i++)
                 {
                     for (j = 0; j < headers.length; j++)
                     {
                         var value = parsedJson[i][headers[j]];
-                        var isUrl = urlRegExp.test(value) || javascriptRegExp.test(value);
-
-                        if(isUrl)   // If value is URL we auto-create a link
-                            tbCon += tdRow.format(link.format(value));
-                        else
-                        {
-                            if(value){
-                            	if(typeof(value) == 'object'){
-                            		//for supporting nested tables
-                            		tbCon += tdRow.format(ConvertJsonToTable(eval(value.data), value.tableId, value.tableClassName, value.linkText));
-                            	} else {
-                            		tbCon += tdRow.format(value);
-                            	}
-                                
-                            } else {    // If value == null we format it like PhpMyAdmin NULL values
-                                tbCon += tdRow.format(italic.format(value).toUpperCase());
-                            }
+                        if(value){
+                            tbCon += tdRow.format(value);
+                        } else {    // If value == null we format it like PhpMyAdmin NULL values
+                            tbCon += tdRow.format(italic.format(value).toUpperCase());
                         }
-                    }
+                     }
+                 }
                     trCon += tr.format(tbCon);
                     tbCon = '';
                 }
