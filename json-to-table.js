@@ -121,7 +121,6 @@ function ConvertJsonToTable(parsedJson, tableId, tableClassName, linkText)
                  }
                     trCon += tr.format(tbCon);
                     tbCon = '';
-                }
             }
         }
         tb = tb.format(trCon);
