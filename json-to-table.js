@@ -118,9 +118,9 @@ function ConvertJsonToTable(parsedJson, tableId, tableClassName, linkText)
                             tbCon += tdRow.format(italic.format(value).toUpperCase());
                         }
                      }
-                 }
                     trCon += tr.format(tbCon);
                     tbCon = '';
+		}
             }
         }
         tb = tb.format(trCon);
